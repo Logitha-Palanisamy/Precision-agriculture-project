@@ -1,28 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import ResetPassword from "./pages/ResetPassword";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword";
 import Dashboard from "./pages/Dashboard";
-import SensorData from "./pages/SensorData";
-import FarmMap from "./pages/FarmMap";
-import CropHealth from "./pages/CropHealth";
-import Alerts from "./pages/Alerts";
 
-function App() {
-  return (
-    <Router>
+function App(){
 
-      <Navbar />
+  return(
+
+    <BrowserRouter>
 
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/sensor" element={<SensorData />} />
-        <Route path="/map" element={<FarmMap />} />
-        <Route path="/crop-health" element={<CropHealth />} />
-        <Route path="/alerts" element={<Alerts />} />
+         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/forgot" element={<ForgotPassword/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
+
       </Routes>
 
-    </Router>
-  );
+    </BrowserRouter>
+
+  )
+
 }
 
-export default App;
+export default App

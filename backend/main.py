@@ -1,15 +1,35 @@
 from fastapi import FastAPI
+from fastapi_mail import FastMail, MessageSchema
+from pydantic import BaseModel
+from email_config import conf
 
 app = FastAPI()
 
-@app.get("/")
-def home():
-    return {"message": "Precision Agriculture Backend Running"}
+class EmailSchema(BaseModel):
+    email: str
 
-@app.get("/sensor-data")
-def sensor_data():
-    return {
-        "soil_moisture": 35,
-        "temperature": 26,
-        "humidity": 60
-    }
+
+@app.post("/forgot-password")
+async def forgot_password(data: EmailSchema):
+
+    reset_link = "http://localhost:3000/reset-password"
+
+    message = MessageSchema(
+        subject="Reset Password - AI Precision Agriculture",
+        recipients=[data.email],
+        body=f"""
+Hello,
+
+Click this link to reset your password:
+
+{reset_link}
+
+AI Precision Agriculture System
+""",
+        subtype="plain"
+    )
+
+    fm = FastMail(conf)
+    await fm.send_message(message)
+
+    return {"message": "Reset link sent to email"}

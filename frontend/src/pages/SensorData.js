@@ -1,24 +1,28 @@
 import { Line } from "react-chartjs-2";
 
-function SensorData() {
+function SensorData(){
 
   const data = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-    datasets: [
+    labels:["Mon","Tue","Wed","Thu","Fri"],
+    datasets:[
       {
-        label: "Soil Moisture",
-        data: [30, 45, 28, 50, 40],
-        borderColor: "green"
+        label:"Soil Moisture",
+        data:[40,45,38,50,48],
+        borderColor:"green"
       }
     ]
-  };
+  }
 
-  return (
+  return(
     <div>
-      <h1>Sensor Data</h1>
-      <Line data={data} />
+
+      <h2>Sensor Monitoring</h2>
+
+      <Line data={data}/>
+
     </div>
-  );
+  )
+
 }
 
-export default SensorData;
+export default SensorData
